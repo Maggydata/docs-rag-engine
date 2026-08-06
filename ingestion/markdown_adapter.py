@@ -7,8 +7,17 @@ from .models import Document, Section
 
 #Detects JSX component tags
 _JSX_TAG_RE = re.compile(r"</?[A-Z][A-Za-z]*(?:\s[^>]*)?>")
+
+#Detects MDX/JS import statements
+_MDX_IMPORT_RE = re.compile(r"^\s*import\s+.+?\s+from\s+['\"].+?['\"];?\s*$")
+
+# Detects self-closing JSX tags in lowercase
+_JSX_SELF_CLOSING_LOWER_RE = re.compile(r"<[a-z][A-Za-z0-9_-]*(?:\s[^>]*)?/>")
+
 def _clean_jsx_tags(text: str) -> str:
-    return _JSX_TAG_RE.sub("", text)
+    text = _MDX_IMPORT_RE.sub("", text)
+    text = _JSX_SELF_CLOSING_LOWER_RE.sub("", text)
+    return text
 
 # Detects Markdown title lines
 _HEADING_RE= re.compile(r'^(#{1,6})\s+(.*)$')
@@ -31,6 +40,10 @@ def _split_into_sections(body : str) -> list[Section] :
     
     in_code_block = False
     for line in body.splitlines() : 
+        
+        if _MDX_IMPORT_RE.match(line):
+            continue
+        
         if line.startswith("```"):
             #Toggle the code block status and add the line to the current section's content
             in_code_block = not in_code_block
