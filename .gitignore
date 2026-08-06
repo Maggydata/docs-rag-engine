@@ -11,3 +11,6 @@ data-source/
 # Éditor
 .vscode/
 .idea/
+
+#Todo List
+TODO.md
