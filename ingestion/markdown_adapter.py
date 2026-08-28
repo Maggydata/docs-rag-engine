@@ -17,6 +17,7 @@ _JSX_SELF_CLOSING_LOWER_RE = re.compile(r"<[a-z][A-Za-z0-9_-]*(?:\s[^>]*)?/>")
 def _clean_jsx_tags(text: str) -> str:
     text = _MDX_IMPORT_RE.sub("", text)
     text = _JSX_SELF_CLOSING_LOWER_RE.sub("", text)
+    text = _JSX_TAG_RE.sub("", text)
     return text
 
 # Detects Markdown title lines
@@ -39,18 +40,30 @@ def _split_into_sections(body : str) -> list[Section] :
     
     
     in_code_block = False
+    skipping = False
     for line in body.splitlines() : 
         
         if _MDX_IMPORT_RE.match(line):
             continue
         
+        if line.strip() == ":::python" or line.strip() == ":::" :
+            skipping = False
+            continue
+        
+        elif line.strip() == ":::js" :
+            skipping = True
+            continue
+        
+        if skipping :
+            continue
+
         if line.startswith("```"):
             #Toggle the code block status and add the line to the current section's content
             in_code_block = not in_code_block
             current_lines.append(line)
             continue
         
-        if not in_code_block:
+        if not in_code_block :
             match = _HEADING_RE.match(line)
             if match : 
                 #Flush the current section before starting a new one

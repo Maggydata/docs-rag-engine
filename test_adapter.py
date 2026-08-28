@@ -3,7 +3,7 @@
 from pathlib import Path
 from ingestion.markdown_adapter import parse_markdown_file
 
-TARGET_FILE = Path("data-source/src/oss/langchain/retrieval.mdx")
+TARGET_FILE = Path("data-source/src/oss/langchain/models.mdx")
 
 def main() -> None :
     

@@ -21,3 +21,11 @@ class Document :
     source_id: str
     title: str
     sections: list[Section] = field(default_factory=list)  
+    
+    
+@dataclass
+class Chunk:
+    """A retrievable piece of a document, ready for embedding."""
+    source_id: str
+    heading: str
+    content: str
