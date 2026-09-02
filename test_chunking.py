@@ -18,9 +18,9 @@ for c in chunks:
     
     
     tailles = [len(c.content) for c in chunks]
-    if len(c.content) < 30:
-        print(f"\n--- [{c.heading}] ({len(c.content)} chars) ---")
-        print(f"min={min(tailles)}, max={max(tailles)}, moyenne={sum(tailles)//len(tailles)}")
-        print(f"chunks > 800 : {sum(1 for t in tailles if t > 800)}")
-        print(c.content)
+    print(f"\n--- [{c.heading}] ({len(c.content)} chars) ---")
+    print(f"{len(chunks)} chunks, min={min(tailles)}, max={max(tailles)}")
+    #print(f"min={min(tailles)}, max={max(tailles)}, moyenne={sum(tailles)//len(tailles)}")
+    #print(f"chunks > 800 : {sum(1 for t in tailles if t > 800)}")
+    #print(c.content)
 #print(f"\n{coupes} chunks avec code coupé sur {len(chunks)}")

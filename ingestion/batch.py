@@ -4,6 +4,7 @@ from collections.abc import Callable
 
 from .models import Document
 from .markdown_adapter import parse_markdown_file
+from .chunking import chunk_document
 
 
 @dataclass
@@ -37,6 +38,16 @@ def ingest_corpus(corpus_dir: Path, parse_fn: Callable[[Path], Document] = parse
 
 if __name__ == "__main__":
     report = ingest_corpus(Path("data-source/src/oss/langchain"))
+    all_chunks = []
+    # for doc in report.documents:
+    #     for s in doc.sections:
+    #         print(report.summary())
+    
     for doc in report.documents:
-        for s in doc.sections:
-            print(report.summary())
+        all_chunks.extend(chunk_document(doc))
+    
+    coupes = sum(1 for c in all_chunks if c.content.count("```") % 2 != 0)
+    tailles = [len(c.content) for c in all_chunks]
+    print(f"{len(all_chunks)} chunks au total")
+    print(f"code coupé : {coupes}")
+    print(f"min={min(tailles)}, max={max(tailles)}, moyenne={sum(tailles)//len(tailles)}")

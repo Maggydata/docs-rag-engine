@@ -7,6 +7,8 @@ _SPLITTER = RecursiveCharacterTextSplitter(
                 chunk_overlap=80,
                 )
 
+_MIN_CHUNK_SIZE = 30
+
 
 @dataclass
 class Segment:
@@ -39,7 +41,7 @@ def chunk_document(document: Document) -> list[Chunk] :
                         content = chunk_content
                     ))    
         
-    return chunks  
+    return [c for c in chunks if len(c.content) >= _MIN_CHUNK_SIZE]  
 
 
 def _split_content_into_segments(content: str) -> list[Segment] : 
