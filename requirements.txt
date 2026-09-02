@@ -1,2 +1,5 @@
 python-frontmatter
 langchain-text-splitters
+python-dotenv
+langchain-chroma
+langchain-openai

@@ -3,10 +3,13 @@ ruth_env/
 __pycache__/
 *.pyc
 .venv/
+.env
 
 
 #data
 data-source/
+chroma_db/
+chroma_test/
 
 # Éditor
 .vscode/
