@@ -19,10 +19,8 @@ print("Index construit.")
 
 # --- questions ---
 for question in [
-    "How do I stream tokens from a model?",
-    "What is tool calling?",
-    "How does structured output work?",
+    "How does tool calling work in LangChain?"
 ]:
     print(f"\nQ: {question}")
-    for r in store.similarity_search(question, k=2):
+    for r in store.similarity_search(question, k=8):
         print(f"  [{r.metadata['heading']}] {r.page_content[:80]}...")

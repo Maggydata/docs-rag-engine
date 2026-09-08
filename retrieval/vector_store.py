@@ -17,7 +17,7 @@ def build_vector_store(chunks: list[Chunk], embedder: Embeddings, persist_direct
 
     """
     
-    texts = [c.content for c in chunks]
+    texts = [f"{c.heading}\n\n{c.content}" for c in chunks]
     
     metadatas = [{"source_id" : c.source_id, "heading" : c.heading} for c in chunks]
     

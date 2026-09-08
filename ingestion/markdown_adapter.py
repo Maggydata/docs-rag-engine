@@ -69,7 +69,7 @@ def _split_into_sections(body : str) -> list[Section] :
                 #Flush the current section before starting a new one
                 _flush_current_section()
                 current_level = len(match.group(1))
-                current_heading = match.group(2).strip()
+                current_heading = _clean_jsx_tags(match.group(2)).strip()
                 current_lines = []
                 continue
         
