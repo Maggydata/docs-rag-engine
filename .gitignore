@@ -10,6 +10,7 @@ __pycache__/
 data-source/
 chroma_db/
 chroma_test/
+eval_results.csv
 
 # Éditor
 .vscode/

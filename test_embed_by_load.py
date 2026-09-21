@@ -8,10 +8,9 @@ store = load_vector_store(embedder, persist_directory="./chroma_db")
 
 # --- questions ---
 for question in [
-    "How does tool calling work in LangChain?"
+    "checkpointer InMemorySaver thread_id conversational memory",
+    "MMR maximum marginal relevance diversity search_type"
 ]:
     print(f"\nQ: {question}")
-    for r in store.similarity_search(question, k=8):
-        if r.metadata["heading"] == "History":
-            print(r.page_content)
-        #print(f"  [{r.metadata['heading']}] {r.page_content[:80]}...")
+    for r in store.similarity_search(question, k=3):
+        print(f"  [{r.metadata['heading']}] {r.page_content[:150]}...")

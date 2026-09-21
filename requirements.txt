@@ -5,3 +5,5 @@ langchain-chroma
 langchain-openai
 langchain_core
 langgraph
+ragas
+langchain-community>=0.4,<0.4.2
