@@ -1,0 +1,12 @@
+ruth_env/
+__pycache__/
+*.pyc
+.git/
+.env
+evaluation/
+data-source/
+chroma_test/
+*.csv
+test_*.py
+run_ingestion.py
+brouillon.py

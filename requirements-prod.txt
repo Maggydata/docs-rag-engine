@@ -1,0 +1,8 @@
+streamlit
+python-dotenv
+langchain-openai
+langchain-core
+langgraph
+langchain-chroma
+langchain-text-splitters
+python-frontmatter
