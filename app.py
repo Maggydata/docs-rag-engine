@@ -16,7 +16,7 @@ def load_graph():
 
 graph = load_graph()
 
-st.title("docs-rag-engine")
+st.title("LangChain Docs Assistant")
 
 if "messages" not in st.session_state :
     st.session_state.messages = []
