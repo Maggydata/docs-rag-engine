@@ -8,3 +8,5 @@ langgraph
 ragas
 langchain-community>=0.4,<0.4.2
 streamlit
+fastapi
+uvicorn
